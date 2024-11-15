@@ -28,22 +28,19 @@ public class SwerveModule extends SubsystemBase {
 
 
  private final CANcoder absoluteEncoder;  //plugged into robo rio
- private final boolean isAbsoluteEncoderReversed;
  private final double absoluteEncoderOffsetRAD;
 
 
  public SwerveModule(int driveMotorID, int turningMotorID, boolean isDriveMotorReversed, boolean isTurningMotorReversed,
-         int absoluteEncoderID, double absoluteEncoderOffset, boolean isAbsoluteEncoderReversed) {
+      int absoluteEncoderID, double absoluteEncoderOffset) {
       
        absoluteEncoderOffsetRAD = absoluteEncoderOffset;
-         //why does tutorial do this.absoluteEncoderOffsetRAD = absoluteEncoderOffset'?
-         // why does tutorial say  this.isAbsoluteEncoderReversed = isAbsoluteEncoderReversed
-       this.isAbsoluteEncoderReversed = isAbsoluteEncoderReversed;
        absoluteEncoder = new CANcoder(absoluteEncoderID);
+
+       //absoluteEncoder.setPosition(absoluteEncoderOffset);
       
        driveMotor = new TalonFX(driveMotorID);
        turningMotor = new TalonFX(turningMotorID);
-
 
        driveMotor.setInverted(isDriveMotorReversed);
        turningMotor.setInverted(isTurningMotorReversed);
@@ -82,20 +79,25 @@ public class SwerveModule extends SubsystemBase {
 
 
      public double getAbsoluteEncoderRot() {
-       return absoluteEncoder.getPosition().getValueAsDouble() * (isAbsoluteEncoderReversed ? -1 : 1); // This means that if boolean returns true then it is assigned the ? #, else :
+       return absoluteEncoder.getAbsolutePosition().getValueAsDouble(); // This means that if boolean returns true then it is assigned the ? #, else :
      }
 
-
+     /*
      public double getAbsoluteEncoderRad() {
          double angleBeforeOffsetIsApplied = absoluteEncoder.getPosition().getValueAsDouble() * 2 * Math.PI; //I Made this part. Not in Video to hopefully convert from rotations into radians.
          double angleAfterOffsetIsApplied = angleBeforeOffsetIsApplied - absoluteEncoderOffsetRAD;
        return angleAfterOffsetIsApplied  * (isAbsoluteEncoderReversed ? -1 : 1);
      }
+     */
+
+     public double getAbsoluteEncoderRad() {
+        return absoluteEncoder.getAbsolutePosition().getValueAsDouble() * 2 * Math.PI;
+     }
 
 
      public void resetEncoders() {
         driveMotor.setPosition(0);
-        turningMotor.setPosition(getAbsoluteEncoderRot()); //Might have to change to rad. The video used rad but the method says it wants rot sooooo
+        turningMotor.setPosition(getAbsoluteEncoderRot());
      }
 
 

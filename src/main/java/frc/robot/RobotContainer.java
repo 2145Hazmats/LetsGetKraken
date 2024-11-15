@@ -19,8 +19,8 @@ public class RobotContainer {
  public RobotContainer() {
    m_swerveSubsystem.setDefaultCommand(new SwerveControllerCommand(
      m_swerveSubsystem,
-     () -> m_driverController.getLeftX(),
-     () -> m_driverController.getLeftY(),
+     () -> -m_driverController.getLeftY(),
+     () -> -m_driverController.getLeftX(),
      () -> m_driverController.getRightX(),
      () -> !m_driverController.getYButton())); //WHY IS IT SUPPLIER AND WHY DO I NEED THE ARROW THIGNYS
 

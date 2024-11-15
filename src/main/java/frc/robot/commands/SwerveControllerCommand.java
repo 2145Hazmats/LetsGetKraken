@@ -29,8 +29,6 @@ private final SlewRateLimiter xLimiter, yLimiter, rotLimiter;
 
 
  public SwerveControllerCommand(SwerveSubsystem swerveSubsystem, Supplier<Double> xspeed, Supplier<Double> yspeed, Supplier<Double> rotspeed, Supplier<Boolean> fieldOrientedFunction){
-
-
      this.swerveSubsystem = swerveSubsystem;
      this.xspeed = xspeed;
      this.yspeed = yspeed;
@@ -43,18 +41,6 @@ private final SlewRateLimiter xLimiter, yLimiter, rotLimiter;
  }
 
 
- /**
-  * Creates a new ExampleCommand.
-  *
-  * @param subsystem The subsystem used by this command.
- 
- public SwerveControllerCommand(SwerveSubsystem subsystem) {
-   m_subsystem = subsystem;
-   // Use addRequirements() here to declare subsystem dependencies.
-   addRequirements(subsystem);
- }*/
-
-
  // Called when the command is initially scheduled.
  @Override
  public void initialize() {}
@@ -63,8 +49,6 @@ private final SlewRateLimiter xLimiter, yLimiter, rotLimiter;
  // Called every time the scheduler runs while the command is scheduled.
  @Override
  public void execute() {
-
-
    double xSpeed = xspeed.get(); //Update speeds with supplier that gets joystick from outside
    double ySpeed = yspeed.get();
    double rotSpeed = rotspeed.get();
@@ -77,8 +61,6 @@ private final SlewRateLimiter xLimiter, yLimiter, rotLimiter;
 
 
    //MAKE DRIVE SMOOTH
-
-
    xSpeed = xLimiter.calculate(xSpeed) * Constants.DriveConstants.kMaxMetersPerSecondTeleop;
    ySpeed = yLimiter.calculate(ySpeed) * Constants.DriveConstants.kMaxMetersPerSecondTeleop;
    rotSpeed = rotLimiter.calculate(rotSpeed) * Constants.DriveConstants.kMaxRadiansPerSecondTeleop;
@@ -86,7 +68,7 @@ private final SlewRateLimiter xLimiter, yLimiter, rotLimiter;
 
    //CONSTRUCT DESIRED CHASIS SPEEDS
    ChassisSpeeds chassisSpeeds;
-   if (fieldOrientedFunction.get()) {//WHY DOES ChassisSpeeds below have to be capitolized rather than chasisSpeeds.fromFieldRelative...
+   if (fieldOrientedFunction.get()) {
        chassisSpeeds = ChassisSpeeds.fromFieldRelativeSpeeds(xSpeed, ySpeed, rotSpeed, swerveSubsystem.getRotation2d()); //CAN SWITCH THIS TO NOT USE UNITS AND JUST HAVE 0-1 I THINK
 
 
