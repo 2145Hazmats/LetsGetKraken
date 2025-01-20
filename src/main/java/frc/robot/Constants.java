@@ -44,7 +44,7 @@ public final class Constants {
    public static final boolean kFrontLeftDriveMotorReversed = true;
    public static final boolean kFrontLeftTurningMotorReversed = true;
    public static final int kFrontLeftDriveAbsoluteEncoderPort = 6;
-   public static final double kFrontLeftDriveAbsoluteEncoderOffsetRad = 0;
+   public static final double kBackLeftDriveAbsoluteEncoderOffsetRad = .025390625;//.025390625; //pretty sure this is acutlaly rotations
 
    //FRONT RIGHT MODOOLE
    public static final int kFrontRightDriveMotorPort = 10;
@@ -52,7 +52,7 @@ public final class Constants {
    public static final boolean kFrontRightDriveMotorReversed = true;
    public static final boolean kFrontRightTurningMotorReversed = true;
    public static final int kFrontRightDriveAbsoluteEncoderPort = 12;
-   public static final double kFrontRightDriveAbsoluteEncoderOffsetRad = 0;
+   public static final double kBackRightDriveAbsoluteEncoderOffsetRad = .025390625;//.135009765625;
 
    //BACK LEFT MODOOLE
    public static final int kBackLeftDriveMotorPort = 1;
@@ -60,7 +60,7 @@ public final class Constants {
    public static final boolean kBackLeftDriveMotorReversed = true; //THESE ARE BOTH TRUE ON OLD CODE
    public static final boolean kBackLeftTurningMotorReversed = true;
    public static final int kBackLeftDriveAbsoluteEncoderPort = 3;
-   public static final double kBackLeftDriveAbsoluteEncoderOffsetRad = 0;
+   public static final double kFrontLeftDriveAbsoluteEncoderOffsetRad = .025390625;//0.079345703125;
 
    //BACK RIGHT MODOOLE
    public static final int kBackRightDriveMotorPort = 7;
@@ -68,7 +68,7 @@ public final class Constants {
    public static final boolean kBackRightDriveMotorReversed = true;
    public static final boolean kBackRightTurningMotorReversed = true;
    public static final int kBackRightDriveAbsoluteEncoderPort = 9;
-   public static final double kBackRightDriveAbsoluteEncoderOffsetRad = 0;
+   public static final double kFrontRightDriveAbsoluteEncoderOffsetRad =.025390625; //0.1884765625;
 
    //PIGEON THE SECOND
    public static final int kPigeonGyroPort = 200; //OLD CODE INVERTED THIS

@@ -33,11 +33,12 @@ public class SwerveModule extends SubsystemBase {
 
  public SwerveModule(int driveMotorID, int turningMotorID, boolean isDriveMotorReversed, boolean isTurningMotorReversed,
       int absoluteEncoderID, double absoluteEncoderOffset) {
-      
+
        absoluteEncoderOffsetRAD = absoluteEncoderOffset;
        absoluteEncoder = new CANcoder(absoluteEncoderID);
 
-       //absoluteEncoder.setPosition(absoluteEncoderOffset);
+       absoluteEncoder.setPosition(absoluteEncoderOffset);
+       
       
        driveMotor = new TalonFX(driveMotorID);
        turningMotor = new TalonFX(turningMotorID);
@@ -77,20 +78,29 @@ public class SwerveModule extends SubsystemBase {
        return turningMotor.getVelocity().getValueAsDouble();
      }
 
-
+    
      public double getAbsoluteEncoderRot() {
        return absoluteEncoder.getAbsolutePosition().getValueAsDouble(); // This means that if boolean returns true then it is assigned the ? #, else :
      }
 
-     /*
-     public double getAbsoluteEncoderRad() {
+     
+     /*public double getAbsoluteEncoderRad() {
          double angleBeforeOffsetIsApplied = absoluteEncoder.getPosition().getValueAsDouble() * 2 * Math.PI; //I Made this part. Not in Video to hopefully convert from rotations into radians.
          double angleAfterOffsetIsApplied = angleBeforeOffsetIsApplied - absoluteEncoderOffsetRAD;
-       return angleAfterOffsetIsApplied  * (isAbsoluteEncoderReversed ? -1 : 1);
-     }
-     */
+          System.out.println("SUUUUUUUUU!");
+           System.out.println("SUUUUUUUUU!");
+            System.out.println("SUUUUUUUUU!");
+             System.out.println("SUUUUUUUUU!");
+              System.out.println("SUUUUUUUUU!");
+               System.out.println("SUUUUUUUUU!");
+       return angleAfterOffsetIsApplied;
 
-     public double getAbsoluteEncoderRad() {
+   
+
+     }*/
+     
+
+     public double getAbuoluteEncoderRad() {
         return absoluteEncoder.getAbsolutePosition().getValueAsDouble() * 2 * Math.PI;
      }
 
@@ -125,5 +135,6 @@ public class SwerveModule extends SubsystemBase {
  @Override
  public void periodic() {
    // This method will be called once per scheduler run
+ 
  }
 }
